@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const db = require('./../db')
 
 
-db.define('User',{
+const User = db.define('User',{
     'id':{
         primaryKey:true,
         type:DataTypes.INTEGER,
@@ -12,7 +12,11 @@ db.define('User',{
         type:DataTypes.STRING,
         allowNull:false,
         validate:{
-            min:3
+           len:{
+              arg: [3,50],
+              msg:"El nombfe debe contener al menos 3 caracteres y maximo de 50 caracteres"
+           
+        }
         }
     },
     'lastName':{
@@ -24,4 +28,4 @@ db.define('User',{
     }
 })
 
-module.exports = db
+module.exports = User
